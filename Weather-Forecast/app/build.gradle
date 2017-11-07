@@ -1,28 +1,69 @@
 apply plugin: 'com.android.application'
 
+def globalConf = rootProject.ext
+
 android {
-    compileSdkVersion 26
+    compileSdkVersion globalConf.androidTargetSdkVersion
     defaultConfig {
-        applicationId "thearith.github.com.weatherforecast"
-        minSdkVersion 17
-        targetSdkVersion 26
-        versionCode 1
-        versionName "1.0"
+        applicationId globalConf.androidApplicationId
+        minSdkVersion globalConf.androidMinSdkVersion
+        targetSdkVersion globalConf.androidTargetSdkVersion
+        versionCode globalConf.versionCode
+        versionName globalConf.versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:appcompat-v7:26.1.0'
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    Map<String, String> dependencies = globalConf.dependencies
+
+    // Android support libraries
+    implementation dependencies.appCompat
+    implementation dependencies.recyclerView
+    implementation dependencies.supportV4
+    implementation dependencies.supportDesign
+
+    // Dagger 2
+    implementation dependencies.dagger2
+    annotationProcessor dependencies.dagger2Apt
+
+    // RxJava
+    implementation dependencies.rxJava2
+    implementation dependencies.rxAndroid
+    implementation dependencies.rxBinding
+    implementation dependencies.rxRecyclerViewBinding
+    implementation dependencies.rxBindingV7Binding
+
+    // Network
+    implementation dependencies.retrofit
+    implementation dependencies.okHttp3
+    implementation dependencies.retrofitRxJava2Adapter
+    implementation dependencies.retrofitGsonConversion
+    implementation dependencies.okHttp3Interceptor
+
+    // ButterKnife
+    implementation dependencies.butterKnife
+    annotationProcessor dependencies.butterKnifeApt
+
+    // Monitoring
+    debugImplementation dependencies.leakCanaryDebug
+    releaseImplementation dependencies.leakCanaryRelease
+
+    // Testing
+    testImplementation dependencies.junit
+    androidTestImplementation(dependencies.testRunner) {
+        exclude module: 'support-annotations'
+    }
 }
