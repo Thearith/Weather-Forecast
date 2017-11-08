@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--Weather RecyclerView Item-->
+    <dimen name="item_padding">15dp</dimen>
+    <dimen name="item_spacing_small">3dp</dimen>
+    <dimen name="item_spacing_medium">5dp</dimen>
+    <dimen name="item_spacing_large">10dp</dimen>
+
+    <dimen name="weather_icon_width">50dp</dimen>
+    <dimen name="weather_icon_height">50dp</dimen>
+
+
+</resources>
