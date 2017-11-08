@@ -14,6 +14,8 @@ import retrofit2.Converter;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
+import thearith.github.com.weatherforecast.data.fetchweather.FetchWeatherRepository;
+import thearith.github.com.weatherforecast.data.fetchweather.repository.FetchWeatherRepositoryImpl;
 import thearith.github.com.weatherforecast.data.utils.Constants;
 import thearith.github.com.weatherforecast.view.internal.di.ApplicationScope;
 import thearith.github.com.weatherforecast.view.internal.di.modules.ApplicationModule;
@@ -24,6 +26,12 @@ import thearith.github.com.weatherforecast.view.internal.di.modules.ApplicationM
 
 @Module(includes = {ApplicationModule.class})
 public class DataModule {
+
+    @Provides
+    @ApplicationScope
+    FetchWeatherRepository providesFetchWeatherRepository(FetchWeatherRepositoryImpl fetchWeatherImpl) {
+        return fetchWeatherImpl;
+    }
 
     // ---------------------------------------------------------
     // @Provide Dependency methods related to DOMAIN layer
