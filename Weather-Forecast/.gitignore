@@ -8,3 +8,6 @@
 /captures
 .externalNativeBuild
 .idea/
+
+# Secret API Keys
+/buildgradle/secret.gradle
