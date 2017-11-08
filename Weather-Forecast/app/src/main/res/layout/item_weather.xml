@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/item_padding"
+    android:paddingTop="@dimen/item_padding">
+    
+    <thearith.github.com.weatherforecast.view.custom.SkyConView
+        android:id="@+id/weather_icon"
+        android:layout_width="@dimen/weather_icon_width"
+        android:layout_height="@dimen/weather_icon_width"
+        app:strokeColor="@color/colorSkyconStroke"
+        app:bgColor="@color/colorSkyconBg"
+        android:layout_marginEnd="@dimen/item_spacing_large"/>
+
+    <TextView
+        android:id="@+id/tv_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:layout_toEndOf="@id/weather_icon"
+        android:layout_marginBottom="@dimen/item_spacing_medium"
+        android:text="Tomorrow"/>
+
+    <TextView
+        android:id="@+id/tv_weather_brief"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/weather_icon"
+        android:layout_below="@id/tv_date"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:text="cloudy"/>
+
+    <TextView
+        android:id="@+id/tv_weather_degrees"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:text="12° - 15°"/>
+
+
+</RelativeLayout>
