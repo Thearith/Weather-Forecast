@@ -1,4 +1,5 @@
 apply from: 'buildgradle/dependencies.gradle'
+apply from: 'buildgradle/secret.gradle'
 
 ext {
     versionName                 = "1.0"
