@@ -1,5 +1,7 @@
 package thearith.github.com.weatherforecast.presentation.schedulers.impl;
 
+import javax.inject.Inject;
+
 import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import thearith.github.com.weatherforecast.presentation.schedulers.PostExecutionThread;
@@ -10,6 +12,7 @@ import thearith.github.com.weatherforecast.presentation.schedulers.PostExecution
  */
 public class UIThread implements PostExecutionThread {
 
+    @Inject
     public UIThread() {
 
     }

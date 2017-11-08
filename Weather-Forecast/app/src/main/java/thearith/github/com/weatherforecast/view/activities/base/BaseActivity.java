@@ -6,6 +6,8 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import butterknife.ButterKnife;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
 import thearith.github.com.weatherforecast.view.internal.di.components.ApplicationComponent;
 
 /**
@@ -14,11 +16,15 @@ import thearith.github.com.weatherforecast.view.internal.di.components.Applicati
  */
 public abstract class BaseActivity extends AppCompatActivity {
 
+    private CompositeDisposable mDisposables;
+
     protected abstract void injectDependencies(ApplicationComponent appComponent);
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        initCompositeDisposables();
 
         ApplicationComponent appComponent = getApplicationComponent();
         injectDependencies(appComponent);
@@ -30,8 +36,28 @@ public abstract class BaseActivity extends AppCompatActivity {
         ButterKnife.bind(this);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        destroyDisposables();
+    }
+
     protected ApplicationComponent getApplicationComponent() {
         return ((BaseApplication) getApplication()).getApplicationComponent();
+    }
+
+    private void initCompositeDisposables() {
+        mDisposables = new CompositeDisposable();
+    }
+
+    protected void addDisposable(Disposable disposable) {
+        mDisposables.add(disposable);
+    }
+
+    private void destroyDisposables() {
+        if(!mDisposables.isDisposed()) {
+            mDisposables.dispose();
+        }
     }
 
 }

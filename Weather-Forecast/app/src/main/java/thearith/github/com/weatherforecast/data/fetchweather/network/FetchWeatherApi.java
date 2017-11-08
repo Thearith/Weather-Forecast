@@ -33,7 +33,8 @@ public final class FetchWeatherApi implements FetchWeatherDataSource {
                 BuildConfig.DARK_SKY_API_KEY,
                 Constants.SG_LATITUDE,
                 Constants.SG_LONGITUDE,
-                Constants.API_BLACKLIST
+                Constants.API_BLACKLIST,
+                Constants.UNITS
         );
     }
 }

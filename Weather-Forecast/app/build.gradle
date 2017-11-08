@@ -34,6 +34,8 @@ android {
 }
 
 dependencies {
+    compile project(path: ':SkyconsLibrary')
+
     Map<String, String> dependencies = globalConf.dependencies
 
     // Android support libraries
@@ -51,7 +53,7 @@ dependencies {
     implementation dependencies.rxAndroid
     implementation dependencies.rxBinding
     implementation dependencies.rxRecyclerViewBinding
-    implementation dependencies.rxBindingV7Binding
+    implementation dependencies.rxBindingV4Binding
 
     // Network
     implementation dependencies.retrofit

@@ -17,7 +17,7 @@ public final class Daily {
 
     @SerializedName("icon")
     @Expose
-    private String icon;
+    private WeatherIcon icon;
 
     @SerializedName("data")
     @Expose
@@ -31,11 +31,11 @@ public final class Daily {
         this.summary = summary;
     }
 
-    public String getIcon() {
+    public WeatherIcon getIcon() {
         return icon;
     }
 
-    public void setIcon(String icon) {
+    public void setIcon(WeatherIcon icon) {
         this.icon = icon;
     }
 

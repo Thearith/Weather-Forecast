@@ -17,7 +17,7 @@ public final class DailyData {
     private String summary;
     @SerializedName("icon")
     @Expose
-    private String icon;
+    private WeatherIcon icon;
     @SerializedName("sunriseTime")
     @Expose
     private int sunriseTime;
@@ -143,11 +143,11 @@ public final class DailyData {
         this.summary = summary;
     }
 
-    public String getIcon() {
+    public WeatherIcon getIcon() {
         return icon;
     }
 
-    public void setIcon(String icon) {
+    public void setIcon(WeatherIcon icon) {
         this.icon = icon;
     }
 

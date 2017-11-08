@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Weather Forecast</string>
+    <string name="location">Singapore</string>
+
+    <string name="error_msg">There is an error at the moment. Please try again.</string>
 </resources>

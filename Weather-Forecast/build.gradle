@@ -6,7 +6,7 @@ ext {
     versionCode                 = 1
 
     androidBuildToolsVersion    = "23.0.2"
-    androidMinSdkVersion        = 16
+    androidMinSdkVersion        = 17
     androidTargetSdkVersion     = 25
 
     androidApplicationId        = "thearith.github.com.weatherforecast"

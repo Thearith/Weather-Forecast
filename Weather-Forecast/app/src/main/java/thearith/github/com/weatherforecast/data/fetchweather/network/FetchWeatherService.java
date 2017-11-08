@@ -17,6 +17,7 @@ public interface FetchWeatherService {
         @Path("apiKey") String apiKey,
         @Path("latitude") double latitude,
         @Path("longitude") double longitude,
-        @Query("exclude") String blacklists
+        @Query("exclude") String blacklists,
+        @Query("units") String units
     );
 }

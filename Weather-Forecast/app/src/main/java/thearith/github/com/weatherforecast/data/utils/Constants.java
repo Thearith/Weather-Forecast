@@ -13,4 +13,5 @@ public final class Constants {
     public static final double SG_LATITUDE          = 1.3521;
     public static final double SG_LONGITUDE         = 103.8198;
     public static final String API_BLACKLIST        = "currently,hourly,flags,minutely";
+    public static final String UNITS                = "si";
 }

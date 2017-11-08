@@ -4,7 +4,7 @@ package thearith.github.com.weatherforecast.view.internal.di.components;
 import android.content.Context;
 
 import dagger.Component;
-import thearith.github.com.weatherforecast.MainActivity;
+import thearith.github.com.weatherforecast.view.activities.main.MainActivity;
 import thearith.github.com.weatherforecast.data.internal.di.modules.DataModule;
 import thearith.github.com.weatherforecast.presentation.internal.di.modules.DomainModule;
 import thearith.github.com.weatherforecast.view.internal.di.ApplicationScope;
