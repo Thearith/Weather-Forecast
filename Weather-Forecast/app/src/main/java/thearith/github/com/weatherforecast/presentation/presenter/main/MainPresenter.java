@@ -15,9 +15,9 @@ import thearith.github.com.weatherforecast.view.model.Status;
 import thearith.github.com.weatherforecast.view.model.WeatherResponse;
 
 /**
- * Created by Thearith on 11/8/17.
+ * Presenter that controls communication between MainActivity (views) and
+ * GitHubSearchRepository (models)
  */
-
 public class MainPresenter extends BasePresenter implements MainContract.Presenter {
 
     private FetchWeatherRepository mFetchWeatherRepo;

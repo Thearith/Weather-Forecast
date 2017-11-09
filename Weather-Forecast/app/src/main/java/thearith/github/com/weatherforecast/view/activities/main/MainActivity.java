@@ -91,11 +91,11 @@ public class MainActivity extends BaseActivity implements MainContract.View {
         Observable<Object> refreshStream =
                 RxSwipeRefreshLayout
                         .refreshes(mSwipeRefreshLayout)
-                        .startWith("Init with refresh");
+                        .startWith("Init with refresh"); // This is to start the stream immediately so that a list is fetched without swiping refresh layout
 
         Observable<WeatherResponse> responseStream =
                 refreshStream
-                        .switchMap(event -> mPresenter.fetchWeatherData());
+                        .switchMap(event -> mPresenter.fetchWeatherData()); // switchMap is used to discard any previous response as we are only concerned with new data
 
         Disposable disposable =
                 responseStream
