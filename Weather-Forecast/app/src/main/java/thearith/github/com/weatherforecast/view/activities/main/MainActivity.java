@@ -1,5 +1,6 @@
 package thearith.github.com.weatherforecast.view.activities.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DividerItemDecoration;
@@ -21,6 +22,7 @@ import thearith.github.com.weatherforecast.data.fetchweather.network.model.Daily
 import thearith.github.com.weatherforecast.data.fetchweather.network.model.Weather;
 import thearith.github.com.weatherforecast.presentation.presenter.main.MainPresenter;
 import thearith.github.com.weatherforecast.view.activities.base.BaseActivity;
+import thearith.github.com.weatherforecast.view.activities.details.DetailsActivity;
 import thearith.github.com.weatherforecast.view.adapter.WeatherAdapter;
 import thearith.github.com.weatherforecast.view.internal.di.components.ApplicationComponent;
 import thearith.github.com.weatherforecast.view.model.WeatherResponse;
@@ -82,20 +84,32 @@ public class MainActivity extends BaseActivity implements MainContract.View {
 
     private void setUpEventStream() {
         setUpRefreshLayoutEventStream();
+        setUpRowClickEventStream();
     }
 
     private void setUpRefreshLayoutEventStream() {
         Observable<Object> refreshStream =
-                RxSwipeRefreshLayout.refreshes(mSwipeRefreshLayout);
+                RxSwipeRefreshLayout
+                        .refreshes(mSwipeRefreshLayout)
+                        .startWith("Init with refresh");
 
-        Disposable disposable = refreshStream
-                .startWith("Init with refresh")
-                .switchMap(event -> mPresenter.fetchWeatherData())
-                .subscribe(
-                        this::updateUI,
-                        error -> handleError()
-                );
+        Observable<WeatherResponse> responseStream =
+                refreshStream
+                        .switchMap(event -> mPresenter.fetchWeatherData());
 
+        Disposable disposable =
+                responseStream
+                        .subscribe(
+                                this::updateUI,
+                                error -> handleError()
+                        );
+
+        addDisposable(disposable);
+    }
+
+    private void setUpRowClickEventStream() {
+        Observable<DailyData> clickStream = mAdapter.getRowClickStream();
+        Disposable disposable = clickStream.subscribe(this::goToDetailPage);
         addDisposable(disposable);
     }
 
@@ -118,11 +132,15 @@ public class MainActivity extends BaseActivity implements MainContract.View {
     }
 
     private void showProgressMode() {
-        mSwipeRefreshLayout.setRefreshing(true);
+        showLoading(true);
+    }
+
+    private void showLoading(boolean isShown) {
+        mSwipeRefreshLayout.setRefreshing(isShown);
     }
 
     private void showCompleteMode(WeatherResponse response) {
-        mSwipeRefreshLayout.setRefreshing(false);
+        showLoading(false);
 
         clearPreviousData();
         showHeader(response.getWeather());
@@ -145,7 +163,16 @@ public class MainActivity extends BaseActivity implements MainContract.View {
 
     @Override
     public void handleError() {
+        showLoading(false);
+
         Toast.makeText(this, R.string.error_msg, Toast.LENGTH_SHORT)
                 .show();
+    }
+
+    @Override
+    public void goToDetailPage(DailyData dailyData) {
+        Intent intent = new Intent(this, DetailsActivity.class);
+        intent.putExtra(DetailsActivity.DETAILS_DAILY_DATA, dailyData);
+        startActivity(intent);
     }
 }

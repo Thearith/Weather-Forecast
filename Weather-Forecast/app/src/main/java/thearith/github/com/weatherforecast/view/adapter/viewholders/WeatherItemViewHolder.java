@@ -5,8 +5,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
+import com.jakewharton.rxbinding2.view.RxView;
+
+import java.util.concurrent.TimeUnit;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.reactivex.Observable;
 import thearith.github.com.weatherforecast.R;
 import thearith.github.com.weatherforecast.data.fetchweather.network.model.DailyData;
 import thearith.github.com.weatherforecast.data.fetchweather.network.model.WeatherIcon;
@@ -41,6 +46,8 @@ public final class WeatherItemViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void bind(DailyData data) {
+        itemView.setTag(data);
+
         WeatherIcon icon = data.getIcon();
         weatherIcon.setIcon(icon);
 
@@ -55,5 +62,12 @@ public final class WeatherItemViewHolder extends RecyclerView.ViewHolder {
         String template = itemView.getContext().getResources().getString(R.string.min_max_temperature);
         String temperature = String.format(template, minTemperature, maxTemperature);
         tvWeatherDegrees.setText(temperature);
+    }
+
+    public Observable<DailyData> getRowClickStream() {
+        return RxView.clicks(itemView)
+                    .debounce(400, TimeUnit.MILLISECONDS)
+                    .map(obj -> itemView)
+                    .map(view -> (DailyData) view.getTag());
     }
 }

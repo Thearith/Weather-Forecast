@@ -3,11 +3,13 @@ package thearith.github.com.weatherforecast.data.fetchweather.network.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 /**
  * Created by Thearith on 11/8/17.
  */
 
-public final class DailyData {
+public final class DailyData implements Serializable {
 
     @SerializedName("time")
     @Expose

@@ -6,9 +6,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.jakewharton.rxbinding2.view.RxView;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import io.reactivex.Observable;
+import io.reactivex.subjects.PublishSubject;
+import io.reactivex.subjects.Subject;
 import thearith.github.com.weatherforecast.R;
 import thearith.github.com.weatherforecast.data.fetchweather.network.model.DailyData;
 import thearith.github.com.weatherforecast.view.adapter.viewholders.WeatherHeaderViewHolder;
@@ -24,9 +29,12 @@ public final class WeatherAdapter extends RecyclerView.Adapter<RecyclerView.View
     private String mDescription;
     private List<DailyData> mDatas;
 
+    private Subject<DailyData> mRowClickSubject;
+
     public WeatherAdapter() {
         mDescription = Constants.EMPTY_STRING;
         mDatas = new ArrayList<>();
+        mRowClickSubject = PublishSubject.create();
     }
 
     public void addHeader(String description) {
@@ -52,23 +60,41 @@ public final class WeatherAdapter extends RecyclerView.Adapter<RecyclerView.View
         notifyItemRangeRemoved(0, size + 1);
     }
 
+    public Observable<DailyData> getRowClickStream() {
+        return mRowClickSubject;
+    }
+
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view;
 
         switch (viewType) {
             case WeatherHeaderViewHolder.LAYOUT_ID:
-                view = layoutInflater.inflate(R.layout.item_weather_header, parent, false);
-                return new WeatherHeaderViewHolder(view);
+                return onCreateWeatherHeaderViewHolder(parent);
 
             case WeatherItemViewHolder.LAYOUT_ID:
             default:
-                view = layoutInflater.inflate(R.layout.item_weather, parent, false);
-                return new WeatherItemViewHolder(view);
-
+                return onCreateWeatherItemViewHolder(parent);
         }
+    }
+
+    private RecyclerView.ViewHolder onCreateWeatherHeaderViewHolder(ViewGroup parent) {
+        LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
+        View view = layoutInflater.inflate(R.layout.item_weather_header, parent, false);
+        return new WeatherHeaderViewHolder(view);
+    }
+
+    private RecyclerView.ViewHolder onCreateWeatherItemViewHolder(ViewGroup parent) {
+        LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
+        View view = layoutInflater.inflate(R.layout.item_weather, parent, false);
+        WeatherItemViewHolder viewHolder = new WeatherItemViewHolder(view);
+
+        // Attach view clicks
+        viewHolder.getRowClickStream()
+                .takeUntil(RxView.detaches(parent))
+                .subscribe(mRowClickSubject);
+
+        return viewHolder;
     }
 
     @Override

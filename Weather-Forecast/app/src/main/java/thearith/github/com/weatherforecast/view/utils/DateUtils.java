@@ -18,7 +18,7 @@ import static java.util.Calendar.getInstance;
 public final class DateUtils {
 
     private static final String     DAY_OF_WEEK_FORMAT      = "EEEE";
-    private static final String     FULL_DATE_FORMAT        = "EEE, dd MM, yyyy";
+    private static final String     FULL_DATE_FORMAT        = "dd MMM yyyy";
 
 
     public static String getDayOfWeek(long timestamp) {
