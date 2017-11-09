@@ -23,7 +23,8 @@ ext {
 
     // Testing
     junitVersion                = '4.12'
-    espressoVersion             = '3.0.1'
+    androidTestRunnerVersion    = '0.4.1'
+    mockitoVersion              = '2.10.0'
 
 
     dependencies = [
@@ -55,8 +56,8 @@ ext {
             leakCanaryRelease       : "com.squareup.leakcanary:leakcanary-android-no-op:$leakCanaryVersion",
 
             junit                   : "junit:junit:$junitVersion",
-            testRunner             : "com.android.support.test:runner:0.4.1",
-            espresso                : "com.android.support.test.espresso:espresso-core:$espressoVersion"
+            testRunner              : "com.android.support.test:runner:$androidTestRunnerVersion",
+            mockito                 : "org.mockito:mockito-core:$mockitoVersion"
     ]
 
 }
