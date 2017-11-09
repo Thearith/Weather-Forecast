@@ -11,5 +11,12 @@
     <dimen name="weather_icon_width">50dp</dimen>
     <dimen name="weather_icon_height">50dp</dimen>
 
+    <!--Details page-->
+    <dimen name="spacing_large">20dp</dimen>
+    <dimen name="spacing_medium">15dp</dimen>
+    <dimen name="spacing_small">10dp</dimen>
+
+    <dimen name="details_weather_icon_width">100dp</dimen>
+    <dimen name="details_weather_icon_height">100dp</dimen>
 
 </resources>
