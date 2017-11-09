@@ -2,7 +2,8 @@
 <resources>
 
     <!--Weather RecyclerView Item-->
-    <dimen name="item_padding">15dp</dimen>
+    <dimen name="item_padding_horizontal">20dp</dimen>
+    <dimen name="item_padding_vertical">15dp</dimen>
     <dimen name="item_spacing_small">3dp</dimen>
     <dimen name="item_spacing_medium">5dp</dimen>
     <dimen name="item_spacing_large">10dp</dimen>

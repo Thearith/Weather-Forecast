@@ -5,8 +5,8 @@
     android:id="@+id/swipe_refresh_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="@dimen/item_padding"
-    android:layout_marginRight="@dimen/item_padding"
+    android:layout_marginLeft="@dimen/item_padding_horizontal"
+    android:layout_marginRight="@dimen/item_padding_horizontal"
     tools:context="thearith.github.com.weatherforecast.view.activities.main.MainActivity">
 
     <android.support.v7.widget.RecyclerView

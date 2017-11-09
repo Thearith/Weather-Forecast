@@ -9,32 +9,43 @@ import com.google.gson.annotations.SerializedName;
 public enum WeatherIcon {
 
     @SerializedName("clear-day")
-    CLEAR_DAY,
+    CLEAR_DAY("clear-day"),
 
     @SerializedName("clear-night")
-    CLEAR_NIGHT,
+    CLEAR_NIGHT("clear-night"),
 
     @SerializedName("rain")
-    RAIN,
+    RAIN("rain"),
 
     @SerializedName("snow")
-    SNOW,
+    SNOW("snow"),
 
     @SerializedName("sleet")
-    SLEET,
+    SLEET("sleet"),
 
     @SerializedName("wind")
-    WIND,
+    WIND("wind"),
 
     @SerializedName("fog")
-    FOG,
+    FOG("fog"),
 
     @SerializedName("cloudy")
-    CLOUDY,
+    CLOUDY("cloudy"),
 
     @SerializedName("partly-cloudy-day")
-    PARTY_CLOUDY_DAY,
+    PARTY_CLOUDY_DAY("partly-cloudy-day"),
 
     @SerializedName("partly-cloudy-night")
-    PARTY_CLOUDY_NIGHT
+    PARTY_CLOUDY_NIGHT("partly-cloudy-night");
+
+
+    private final String mValue;
+
+    WeatherIcon(String value) {
+        mValue = value;
+    }
+
+    public String toString() {
+        return mValue;
+    }
 }

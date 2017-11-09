@@ -2,5 +2,7 @@
     <string name="app_name">Weather Forecast</string>
     <string name="location">Singapore</string>
 
+    <string name="min_max_temperature">%d° - %d°</string>
+
     <string name="error_msg">There is an error at the moment. Please try again.</string>
 </resources>

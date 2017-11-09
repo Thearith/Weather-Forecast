@@ -9,7 +9,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import thearith.github.com.weatherforecast.R;
 import thearith.github.com.weatherforecast.data.fetchweather.network.model.DailyData;
+import thearith.github.com.weatherforecast.data.fetchweather.network.model.WeatherIcon;
 import thearith.github.com.weatherforecast.view.custom.SkyConView;
+import thearith.github.com.weatherforecast.view.utils.Constants;
+import thearith.github.com.weatherforecast.view.utils.DateUtils;
 
 /**
  * Created by Thearith on 11/8/17.
@@ -38,13 +41,19 @@ public final class WeatherItemViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void bind(DailyData data) {
-        weatherIcon.setIcon(data.getIcon());
-        tvWeatherBrief.setText(data.getSummary());
+        WeatherIcon icon = data.getIcon();
+        weatherIcon.setIcon(icon);
 
-        String date = String.valueOf(data.getTime()); // TODO: Change to Wednesday
+        String iconStr = icon.toString().replace(Constants.HYPHEN, Constants.SPACE);
+        tvWeatherBrief.setText(iconStr);
+
+        String date = DateUtils.getDayOfWeek(data.getTime());
         tvDate.setText(date);
 
-        String temperature = String.valueOf(data.getApparentTemperatureMin()); //TODO: change to 12 - 15
+        int minTemperature = (int) data.getTemperatureMin();
+        int maxTemperature = (int) data.getTemperatureMax();
+        String template = itemView.getContext().getResources().getString(R.string.min_max_temperature);
+        String temperature = String.format(template, minTemperature, maxTemperature);
         tvWeatherDegrees.setText(temperature);
     }
 }

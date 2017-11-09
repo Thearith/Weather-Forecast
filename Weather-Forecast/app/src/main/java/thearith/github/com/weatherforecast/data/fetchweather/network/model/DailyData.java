@@ -11,7 +11,7 @@ public final class DailyData {
 
     @SerializedName("time")
     @Expose
-    private int time;
+    private long time;
     @SerializedName("summary")
     @Expose
     private String summary;
@@ -47,25 +47,25 @@ public final class DailyData {
     private double temperatureHigh;
     @SerializedName("temperatureHighTime")
     @Expose
-    private int temperatureHighTime;
+    private long temperatureHighTime;
     @SerializedName("temperatureLow")
     @Expose
     private double temperatureLow;
     @SerializedName("temperatureLowTime")
     @Expose
-    private int temperatureLowTime;
+    private long temperatureLowTime;
     @SerializedName("apparentTemperatureHigh")
     @Expose
     private double apparentTemperatureHigh;
     @SerializedName("apparentTemperatureHighTime")
     @Expose
-    private int apparentTemperatureHighTime;
+    private long apparentTemperatureHighTime;
     @SerializedName("apparentTemperatureLow")
     @Expose
     private double apparentTemperatureLow;
     @SerializedName("apparentTemperatureLowTime")
     @Expose
-    private int apparentTemperatureLowTime;
+    private long apparentTemperatureLowTime;
     @SerializedName("dewPoint")
     @Expose
     private double dewPoint;
@@ -83,7 +83,7 @@ public final class DailyData {
     private double windGust;
     @SerializedName("windGustTime")
     @Expose
-    private int windGustTime;
+    private long windGustTime;
     @SerializedName("windBearing")
     @Expose
     private int windBearing;
@@ -95,10 +95,10 @@ public final class DailyData {
     private int uvIndex;
     @SerializedName("uvIndexTime")
     @Expose
-    private int uvIndexTime;
+    private long uvIndexTime;
     @SerializedName("visibility")
     @Expose
-    private int visibility;
+    private double visibility;
     @SerializedName("ozone")
     @Expose
     private double ozone;
@@ -107,31 +107,31 @@ public final class DailyData {
     private double temperatureMin;
     @SerializedName("temperatureMinTime")
     @Expose
-    private int temperatureMinTime;
+    private long temperatureMinTime;
     @SerializedName("temperatureMax")
     @Expose
     private double temperatureMax;
     @SerializedName("temperatureMaxTime")
     @Expose
-    private int temperatureMaxTime;
+    private long temperatureMaxTime;
     @SerializedName("apparentTemperatureMin")
     @Expose
     private double apparentTemperatureMin;
     @SerializedName("apparentTemperatureMinTime")
     @Expose
-    private int apparentTemperatureMinTime;
+    private long apparentTemperatureMinTime;
     @SerializedName("apparentTemperatureMax")
     @Expose
     private double apparentTemperatureMax;
     @SerializedName("apparentTemperatureMaxTime")
     @Expose
-    private int apparentTemperatureMaxTime;
+    private long apparentTemperatureMaxTime;
 
-    public int getTime() {
+    public long getTime() {
         return time;
     }
 
-    public void setTime(int time) {
+    public void setTime(long time) {
         this.time = time;
     }
 
@@ -223,11 +223,11 @@ public final class DailyData {
         this.temperatureHigh = temperatureHigh;
     }
 
-    public int getTemperatureHighTime() {
+    public long getTemperatureHighTime() {
         return temperatureHighTime;
     }
 
-    public void setTemperatureHighTime(int temperatureHighTime) {
+    public void setTemperatureHighTime(long temperatureHighTime) {
         this.temperatureHighTime = temperatureHighTime;
     }
 
@@ -239,11 +239,11 @@ public final class DailyData {
         this.temperatureLow = temperatureLow;
     }
 
-    public int getTemperatureLowTime() {
+    public long getTemperatureLowTime() {
         return temperatureLowTime;
     }
 
-    public void setTemperatureLowTime(int temperatureLowTime) {
+    public void setTemperatureLowTime(long temperatureLowTime) {
         this.temperatureLowTime = temperatureLowTime;
     }
 
@@ -255,11 +255,11 @@ public final class DailyData {
         this.apparentTemperatureHigh = apparentTemperatureHigh;
     }
 
-    public int getApparentTemperatureHighTime() {
+    public long getApparentTemperatureHighTime() {
         return apparentTemperatureHighTime;
     }
 
-    public void setApparentTemperatureHighTime(int apparentTemperatureHighTime) {
+    public void setApparentTemperatureHighTime(long apparentTemperatureHighTime) {
         this.apparentTemperatureHighTime = apparentTemperatureHighTime;
     }
 
@@ -271,11 +271,11 @@ public final class DailyData {
         this.apparentTemperatureLow = apparentTemperatureLow;
     }
 
-    public int getApparentTemperatureLowTime() {
+    public long getApparentTemperatureLowTime() {
         return apparentTemperatureLowTime;
     }
 
-    public void setApparentTemperatureLowTime(int apparentTemperatureLowTime) {
+    public void setApparentTemperatureLowTime(long apparentTemperatureLowTime) {
         this.apparentTemperatureLowTime = apparentTemperatureLowTime;
     }
 
@@ -319,11 +319,11 @@ public final class DailyData {
         this.windGust = windGust;
     }
 
-    public int getWindGustTime() {
+    public long getWindGustTime() {
         return windGustTime;
     }
 
-    public void setWindGustTime(int windGustTime) {
+    public void setWindGustTime(long windGustTime) {
         this.windGustTime = windGustTime;
     }
 
@@ -351,19 +351,19 @@ public final class DailyData {
         this.uvIndex = uvIndex;
     }
 
-    public int getUvIndexTime() {
+    public long getUvIndexTime() {
         return uvIndexTime;
     }
 
-    public void setUvIndexTime(int uvIndexTime) {
+    public void setUvIndexTime(long uvIndexTime) {
         this.uvIndexTime = uvIndexTime;
     }
 
-    public int getVisibility() {
+    public double getVisibility() {
         return visibility;
     }
 
-    public void setVisibility(int visibility) {
+    public void setVisibility(double visibility) {
         this.visibility = visibility;
     }
 
@@ -383,11 +383,11 @@ public final class DailyData {
         this.temperatureMin = temperatureMin;
     }
 
-    public int getTemperatureMinTime() {
+    public long getTemperatureMinTime() {
         return temperatureMinTime;
     }
 
-    public void setTemperatureMinTime(int temperatureMinTime) {
+    public void setTemperatureMinTime(long temperatureMinTime) {
         this.temperatureMinTime = temperatureMinTime;
     }
 
@@ -399,11 +399,11 @@ public final class DailyData {
         this.temperatureMax = temperatureMax;
     }
 
-    public int getTemperatureMaxTime() {
+    public long getTemperatureMaxTime() {
         return temperatureMaxTime;
     }
 
-    public void setTemperatureMaxTime(int temperatureMaxTime) {
+    public void setTemperatureMaxTime(long temperatureMaxTime) {
         this.temperatureMaxTime = temperatureMaxTime;
     }
 
@@ -415,11 +415,11 @@ public final class DailyData {
         this.apparentTemperatureMin = apparentTemperatureMin;
     }
 
-    public int getApparentTemperatureMinTime() {
+    public long getApparentTemperatureMinTime() {
         return apparentTemperatureMinTime;
     }
 
-    public void setApparentTemperatureMinTime(int apparentTemperatureMinTime) {
+    public void setApparentTemperatureMinTime(long apparentTemperatureMinTime) {
         this.apparentTemperatureMinTime = apparentTemperatureMinTime;
     }
 
@@ -431,11 +431,11 @@ public final class DailyData {
         this.apparentTemperatureMax = apparentTemperatureMax;
     }
 
-    public int getApparentTemperatureMaxTime() {
+    public long getApparentTemperatureMaxTime() {
         return apparentTemperatureMaxTime;
     }
 
-    public void setApparentTemperatureMaxTime(int apparentTemperatureMaxTime) {
+    public void setApparentTemperatureMaxTime(long apparentTemperatureMaxTime) {
         this.apparentTemperatureMaxTime = apparentTemperatureMaxTime;
     }
 }
