@@ -35,9 +35,6 @@ public class MainPresenterTest {
     @Mock
     private FetchWeatherRepository mFetchWeatherRepository;
 
-    @Mock
-    private ThreadExecutor mThreadExecutor;
-
     @InjectMocks
     private MainPresenter mPresenter;
 
