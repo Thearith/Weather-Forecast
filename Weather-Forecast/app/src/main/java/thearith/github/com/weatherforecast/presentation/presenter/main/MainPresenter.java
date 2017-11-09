@@ -3,6 +3,7 @@ package thearith.github.com.weatherforecast.presentation.presenter.main;
 import javax.inject.Inject;
 
 import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import thearith.github.com.weatherforecast.data.fetchweather.FetchWeatherRepository;
 import thearith.github.com.weatherforecast.data.fetchweather.network.model.Weather;
@@ -30,12 +31,16 @@ public class MainPresenter extends BasePresenter implements MainContract.Present
 
     @Override
     public Observable<WeatherResponse> fetchWeatherData() {
+        return fetchWeatherDataWithNoSchedulers()
+                .subscribeOn(Schedulers.from(mThreadExecutor))
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Observable<WeatherResponse> fetchWeatherDataWithNoSchedulers() {
         return mFetchWeatherRepo.fetchWeatherData()
                 .map(this::mapResponse)
                 .startWith(new WeatherResponse(Status.IN_PROGRESS))
-                .onErrorReturn(e -> new WeatherResponse(Status.ERROR))
-                .subscribeOn(Schedulers.from(mThreadExecutor))
-                .observeOn(mPostExecutorThread.getScheduler());
+                .onErrorReturn(e -> new WeatherResponse(Status.ERROR));
     }
 
     private WeatherResponse mapResponse(Weather weather) {
